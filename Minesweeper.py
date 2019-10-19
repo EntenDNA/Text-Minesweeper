@@ -3,6 +3,8 @@ import re
 from Mine_ui_check import *
 
 def mine_sweeper(größe):
+    # Check Liste
+    cl = []
     # Leben
     leben = 2
     # Vergleich Feld generieren
@@ -13,7 +15,7 @@ def mine_sweeper(größe):
         bomben = [[rd.randint(0,größe-1), rd.randint(0,größe-1)]]
     else:
         # 20% des Feldes sind Bomben
-        bomben = [[rd.randint(0,größe-1), rd.randint(0,größe-1)] for x in range(round((30*(größe*größe))//100))]
+        bomben = [[rd.randint(0,größe-1), rd.randint(0,größe-1)] for x in range(round((20*(größe*größe))//100))]
     # Dev zeug
     #print(bomben)
     #print("Generated:", len(bomben), "bombs")
@@ -37,9 +39,32 @@ def mine_sweeper(größe):
                     field[b_höhe][b_breite] = "+"
                     break
 
+    for z in range(len(field)):
+        for s in range(len(field[z])):
+            zr = range(z-1, z+2)
+            sr = range(s-1, s+2)
+            if field[z][s] != "+":
 
-    #for z in field:
-        #print(z)
+                for i in zr:
+                        for j in sr:
+                            try:
+                                if j >= 0 and i >= 0:
+                                    cl.append(field[i][j])
+                                else:
+                                    pass
+
+                            except IndexError:
+                                pass
+
+                ndb = cl.count("+")
+                field[z][s] = str(ndb)
+                cl = []
+
+            else:
+                pass
+
+    for z in field:
+        print(z)
 
     print()
 
@@ -52,6 +77,7 @@ def mine_sweeper(größe):
 
     # User gibt Feld ein und es wird geprüft
     inputcheck(field, ufield, größe)
+    # Schaut ob man gewonnen oder verloren hat
 
 # Input für die Größe des Feldes
 while True:

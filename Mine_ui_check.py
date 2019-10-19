@@ -42,41 +42,12 @@ def inputcheck(cfield, ufield, feldg):
                 print()
             else:
                 print("Keine Bombe")
-                # 3x3 Feld um den Punkt wird ausgewählt
-                zr = range(ui_höhe-1, ui_höhe+2)
-                sr = range(ui_breite-1, ui_breite+2)
-
-                # 3 Zeilen
-                for i in zr:
-                    # 3 Spalten
-                    for j in sr:
-                        # Dev zeug um zu schauen ob die Felder stimmen
-                        #print("Raw Feld", i, j, "ist", cfield[i][j])
-                        try:
-                            if j >= 0 and i >= 0:
-                                # Dev Zeug
-                                #print("Feld", i, j, "ist", cfield[i][j])
-                                cl.append(cfield[i][j])
-                            else:
-                                pass
-
-                        except IndexError:
-                            pass
-
-                richtig += 1
-                # Dev Zeug
-                #print(cl)
-
-                # Zählt die "X" in cl
-                ndb = cl.count("+")
-
-                ufield[ui_höhe][ui_breite] = str(ndb)
-
-                cl = []
+                ufield[ui_höhe][ui_breite] = cfield[ui_höhe][ui_breite]
 
                 for i in ufield:
                     print(i)
 
+                richtig += 1
         # Wenn spieler Koordinaten über dem Feld angibt
         except IndexError:
             print("Bitte Koordinaten in der Liste angeben")
