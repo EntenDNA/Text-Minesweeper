@@ -3,7 +3,7 @@ import re
 def inputcheck(cfield, ufield, feldg):
 
     rn = int(round((30*(feldg**2))//100))
-    print("Es ist/sind", rn, "Feld/er nötig um zu gewinnen")
+    print("You have to get", rn, "fields right to win!")
     print()
 
     cl = []
