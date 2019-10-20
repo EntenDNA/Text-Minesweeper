@@ -3,25 +3,25 @@ import re
 from Mine_ui_check import *
 
 def mine_sweeper(größe):
-    # Check Liste
+    # Check List
     cl = []
-    # Leben
+    # Lives
     leben = 2
-    # Vergleich Feld generieren
+    # Generating check field
     field = [["O" for i in range(größe)] for i in range(größe)]
-    # Bomben erschaffen
+    # Creating bombs
     if größe <= 3:
-        # Bei Feldern die kleiner sind als 3x3 auch eine Bombe erschaffen
+        # Fields smaller than 3x3 should have bombs too
         bomben = [[rd.randint(0,größe-1), rd.randint(0,größe-1)]]
     else:
-        # 20% des Feldes sind Bomben
+        # 20% of the field are bombs
         bomben = [[rd.randint(0,größe-1), rd.randint(0,größe-1)] for x in range(round((20*(größe*größe))//100))]
     # Dev zeug
     #print(bomben)
     #print("Generated:", len(bomben), "bombs")
     #print(rn)
     print()
-    # Bomben ins Feld bringen
+    # Bringing bombs into field
     for i in bomben:
         b_höhe, b_breite = i
         if field[b_höhe][b_breite] == "O":
@@ -29,7 +29,7 @@ def mine_sweeper(größe):
         else:
             # Dev Zeug
             #print("Duplicate")
-            # Bomben können nicht an der selben stelle spawnen
+            # Bombs cannot spawn in same place
             while True:
                 b_höhe = rd.randint(0,größe-1)
                 b_breite =rd.randint(0,größe-1)
@@ -68,27 +68,26 @@ def mine_sweeper(größe):
 
     print()
 
-    # Feld welches der User sieht und spielt
+    # User field
     ufield = [["O" for i in range(größe)] for i in range(größe)]
     for uf in ufield:
         print(uf)
 
     print()
 
-    # User gibt Feld ein und es wird geprüft
+    # Inputcheck function
     inputcheck(field, ufield, größe)
-    # Schaut ob man gewonnen oder verloren hat
 
-# Input für die Größe des Feldes
+# Field size
 while True:
     try:
-        g = int(input("Welche größe?: "))
+        g = int(input("Which size: "))
         if g <= 0:
             raise
         break
     except:
-        print("Bitte nur ganze Zahlen eingeben")
+        print("Only positive integers!")
         continue
 
-# Main funktion
+# Main function
 mine_sweeper(g)

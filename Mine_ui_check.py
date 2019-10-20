@@ -12,27 +12,27 @@ def inputcheck(cfield, ufield, feldg):
 
     while leben != 0 and richtig != rn:
         while True:
-            ui = input("Welches Feld (Zeile, Spalte): ")
+            ui = input("Which field (Row, Column): ")
             print()
-            # Findet alle Zahlen um Koordinaten daraus zu machen
+            # Finds all numbers
             fin = re.findall("[0-9]+",ui)
             #print(fin)
             if len(fin) > 2 or len(fin) == 1 or len(fin) == 0:
-                print("Bitte Format beachten")
+                print("Please use the foramt given")
                 print()
                 continue
             else:
                 break
 
-        # Aufteilen der Koordinaten in der Liste fin
+        # Working with the coordinates
         ui_höhe, ui_breite = fin
         ui_höhe = int(ui_höhe)-1
         ui_breite = int(ui_breite)-1
 
-        # Testen ob Feld Bombe ist oder nicht
+        # Checking if field is a bomb or not
         try:
             if cfield[ui_höhe][ui_breite] == "+":
-                print("Bombe")
+                print("Bomb")
                 print()
                 leben -= 1
                 ufield[ui_höhe][ui_breite] = "+"
@@ -41,22 +41,22 @@ def inputcheck(cfield, ufield, feldg):
                         print(i)
                 print()
             else:
-                print("Keine Bombe")
+                print("No bomb")
                 ufield[ui_höhe][ui_breite] = cfield[ui_höhe][ui_breite]
 
                 for i in ufield:
                     print(i)
 
                 richtig += 1
-        # Wenn spieler Koordinaten über dem Feld angibt
+        # If coordinates are not in the field
         except IndexError:
-            print("Bitte Koordinaten in der Liste angeben")
+            print("Please input coordinates in the field")
             continue
 
     if richtig == rn:
-        print("Gewonnen")
+        print("You win!")
     else:
-        print("Verloren. Das Feld war:")
+        print("You lost. The field was:")
 
         for i in cfield:
             print(i)
