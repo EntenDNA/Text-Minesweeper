@@ -41,7 +41,7 @@ def inputcheck(cfield, ufield, feldg):
                         print(i)
                 print()
             else:
-                print("No bomb")
+                print("Not a bomb")
                 ufield[ui_höhe][ui_breite] = cfield[ui_höhe][ui_breite]
 
                 for i in ufield:
