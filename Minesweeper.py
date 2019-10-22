@@ -87,6 +87,7 @@ while True:
         break
     except:
         print("Only positive integers!")
+        print("Don't cheat")
         continue
 
 # Main function
